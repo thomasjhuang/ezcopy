@@ -4,12 +4,20 @@
   "manifest_version": 2,
   "description": "Get customized copy and paste!",
   "browser_action": {
+    "default_title": "ezcopy",
     "default_icon": "icon-001.png",
     "default_popup": "popup_ezcopy.html"
   },
+  "content_scripts" : [
+    {
+        "matches" : [
+          "http://*/*"
+        ],
+        "js" : ["contentscript.js"]
+    }
+  ],
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "scripts": ["background.js"]
   },
   "commands": {
     "_execute_browser_action": {
@@ -18,8 +26,7 @@
       }
     }
   },
-  "web_accessible_resources": ["api_ezcopy.js"],
-  "permissions": [ "tabs", "activeTab", "storage", "unlimitedStorage" ],
+  "permissions": [ "tabs", "activeTab", "storage", "unlimitedStorage", "background", "http://*/*", "https://*/*" ],
   "icons": {
     "16": "icon16-000.png",
     "48": "icon48-000.png",

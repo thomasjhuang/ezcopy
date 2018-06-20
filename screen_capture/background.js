@@ -1,3 +1,34 @@
+chrome.extension.onMessage.addListener(
+  function(request, sender, sendReponse){
+    if (request.action === "prefs"){
+      var prefsString = localStorage.prefs;
+      if(prefsString === undefined){
+        sendReponse(undefined);
+      } else {
+        sendresponse(JSON.parse(localStorage.prefs));
+      }
+    }
+  });
+
+
+function click(e) {
+  chrome.tabs.query({currentWindow:true, active:true}, function(tabs){
+    console.log("background.js : click()");
+    var specTab = tabs[0];
+
+    // injecting CSS
+    chrome.tabs.insertCSS(spaceTab.id, {file:"styles.css"});
+    // snipping tool : get the rectangle (coordinates) to crop
+    chrome.tabs.executeScript(spaceTab.id, {file:"snipper.js"});
+    // screen capture : capture the screen
+    chrome.tabs.executeScript(spaceTab.id, {file:"contentscript.js"});
+  });
+}
+
+// adding eventListener to the browserAction, when someone click the icon, run click function
+chrome.browserAction.onClicked.addListener(click);
+
+
 // 'use strict';
   // Called when the user clicks on the browser action.
 //   chrome.browserAction.onClicked.addListener(function (tab) {
