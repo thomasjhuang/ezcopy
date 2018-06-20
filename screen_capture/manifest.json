@@ -1,0 +1,28 @@
+{
+  "name": "ezcopy",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Get customized copy and paste!",
+  "browser_action": {
+    "default_icon": "icon-001.png",
+    "default_popup": "popup_ezcopy.html"
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+E"
+      }
+    }
+  },
+  "web_accessible_resources": ["api_ezcopy.js"],
+  "permissions": [ "tabs", "activeTab", "storage", "unlimitedStorage" ],
+  "icons": {
+    "16": "icon16-000.png",
+    "48": "icon48-000.png",
+    "128": "icon128-000.png"
+  }
+}
