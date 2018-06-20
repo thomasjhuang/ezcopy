@@ -29,3 +29,8 @@ function visionApiCall(filenameInput) {
 
     return string_text;
 }
+
+var ncp = require("copy-paste");  //uses copy-paste
+ncp.copy(visionApiCall("/mnt/c/Users/mhugheytestMeme.png"), function () {
+    //optional callback after copy
+});
