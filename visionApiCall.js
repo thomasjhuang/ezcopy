@@ -1,3 +1,11 @@
+/*
+ * visionApiCall
+ * 
+ * Takes input from screen capture (Eric's output), makes
+ * a call to the Google Vision Api and returns a string 
+ * variable with the text from the input image file. 
+ * 
+ */
 function visionApiCall(filenameInput) {
 
     // Imports the Google Cloud client library
@@ -6,26 +14,14 @@ function visionApiCall(filenameInput) {
     // Creates a client
     const client = new vision.ImageAnnotatorClient();
 
-    // Gets image information from screen capture
-    const fileName = filenameInput;
-
     // Read a local image as a text document
-    // Saves response in json file
-    var json_result = {
-        response:[]
-    };
+    // Saves response in string variable
     var string_text = "";
     client
-    .documentTextDetection(fileName)
+    .documentTextDetection(filenameInput)
     .then(results => {
         const fullTextAnnotation = results[0].fullTextAnnotation;
-        json_result.response.push({fullTextAnnotation});
-        var json = JSON.stringify(json_result, null, 2);
-        var fs = require('fs');
-        fs.writeFile('image_text.json', json, 'utf8');
-
         string_text = fullTextAnnotation.text;
-        //console.log(string_text);
     })
     .catch(err => {
         console.error('ERROR:', err);
