@@ -3,8 +3,12 @@
   "description": "More customized copying and pasting",
   "version": "1.0.0",
   "permissions": [
-    "activeTab"
+    "activeTab", "commands"
   ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
   "background": {
     "scripts": ["background.js"],
     "persistent": false
@@ -14,5 +18,12 @@
     "default_icon": "images/ezcopyIcon.png"
   },
   "icons": {"128": "images/ezcopyIcon.png"},
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+E"
+      }
+    }
+  },
   "manifest_version": 2
 }
