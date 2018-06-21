@@ -3,7 +3,7 @@
   "description": "More customized copying and pasting",
   "version": "1.0.0",
   "permissions": [
-    "activeTab", "commands"
+    "activeTab", "tabs", "http://*/*", "https://*/*"
   ],
   "options_ui": {
     "page": "options.html",
@@ -13,6 +13,14 @@
     "scripts": ["background.js"],
     "persistent": false
   },
+  "content_scripts": [
+		{
+			"matches": ["http://*/*", "https://*/*"],
+			"js": ["content.js"],
+	        "run_at": "document_end",
+	        "all_frames": true
+		}
+	],
   "browser_action": {
     "default_title": "Copy",
     "default_icon": "images/ezcopyIcon.png"
